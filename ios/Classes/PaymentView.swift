@@ -110,9 +110,12 @@ class FLNativeView: NSObject, FlutterPlatformView,KlarnaPaymentEventListener {
     }
     
     func klarnaAuthorized(paymentView: KlarnaMobileSDK.KlarnaPaymentView, approved: Bool, authToken: String?, finalizeRequired: Bool) {
+        streamHandler.sendMessage(state:PaymentState.authorized.rawValue, message: authToken);
+        if(finalizeRequired){
+            paymentView.finalise();
+        }
         if (authToken != nil) {
-            streamHandler.sendMessage(state:PaymentState.authorized.rawValue, message: authToken);
-            
+            streamHandler.sendMessage(state:PaymentState.createOrder.rawValue, message: authToken);
         }
     }
     
@@ -123,10 +126,13 @@ class FLNativeView: NSObject, FlutterPlatformView,KlarnaPaymentEventListener {
     
     func klarnaFinalized(paymentView: KlarnaMobileSDK.KlarnaPaymentView, approved: Bool, authToken: String?) {
         streamHandler.sendMessage(state:PaymentState.finalized.rawValue, message: nil);
+        if (authToken != nil) {
+            streamHandler.sendMessage(state:PaymentState.createOrder.rawValue, message: authToken);
+        }
     }
     
     func klarnaResized(paymentView: KlarnaMobileSDK.KlarnaPaymentView, to newHeight: CGFloat) {
-        self.heightConstr.constant = newHeight
+        self.heightConstr.constant = newHeight;
     }
     
     func klarnaFailed(inPaymentView paymentView: KlarnaMobileSDK.KlarnaPaymentView, withError error: KlarnaMobileSDK.KlarnaPaymentError) {

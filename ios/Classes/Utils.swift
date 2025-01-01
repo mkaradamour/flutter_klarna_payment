@@ -32,5 +32,6 @@ enum PaymentState: String {
     case reauthorized
     case errorOccurred
     case loadPaymentReview
+    case createOrder
     case unknown
 }

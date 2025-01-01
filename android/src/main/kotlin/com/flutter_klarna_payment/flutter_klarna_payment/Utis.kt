@@ -26,6 +26,7 @@ enum class KlarnaPaymentState {
     REAUTHORIZED,
     ERROR_OCCURRED,
     LOAD_PAYMENT_REVIEW,
+    CREATE_ORDER,
     UNKNOWN;
     fun toCamelCase(): String {
         val words = name.lowercase().split('_')

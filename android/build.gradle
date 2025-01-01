@@ -34,7 +34,7 @@ android {
         namespace 'com.flutter_klarna_payment.flutter_klarna_payment'
     }
 
-    compileSdkVersion 34
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -51,7 +51,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 19
     }
 
     dependencies {
@@ -73,7 +73,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.klarna.mobile:sdk:2.6.16'
+    implementation 'com.klarna.mobile:sdk:2.6.22'
 }
 
 

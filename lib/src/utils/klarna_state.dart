@@ -7,6 +7,7 @@ enum KlarnaState {
   reauthorized,
   errorOccurred,
   loadPaymentReview,
+  createOrder,
   unknown
 }
 
